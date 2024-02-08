@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/favicon.svg" type="svg+xml">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto">
+            <div class="flex flex-col text-center w-full mb-20">
+                <h1 class="text-2xl font-medium title-font mb-4 text-gray-900 tracking-widest">Your Products</h1>
+            </div>
+            <div class="w-full flex justify-end">
+                <button style="background-color:blue;" type="button" class="mx-5 btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">
+                    Add Product
+                </button>
+            </div>
+            <div class="flex flex-wrap -m-4">
+                <%if(products.length>0){%>
+                    <%products.map((product)=>{%>
+                        <div class="p-4">
+                            <div class="h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
+                                <img alt="team" class="flex-shrink-0 rounded-lg w-48 h-48 object-cover object-center sm:mb-0 mb-4" src="<%=product.url%>" />
+                                <div class="mx-5 flex-grow sm:pl-8">
+                                    <h2 class="title-font font-medium text-lg text-gray-900">
+                                        <%=product.title%>
+                                    </h2>
+                                </div>
+                                <form action="/delete?name=<%=product.title%>" method="post">
+                                    <button type="submit" class="bg-red-500 btn btn-danger">delete Item</button>
+                                </form>
+                                <button style="background-color:blue;" type="button" class="mx-5 btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal2">
+                                    Edit item
+                                </button>
+                            </div>
+                        </div>
+                        <!-- start -->
+                            <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <form action="/edit/<%=product.title%>" method="post">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <label for="title" class="form-label">New Title</label>
+                                                <input name="title" id="title" type="text" class="form-control" placeholder="Provide new title for this product" aria-label="Username" aria-describedby="basic-addon1">
+                                                <label for="price" class="form-label">New Price</label>
+                                                <input id="price" name="price" type="text" class="form-control"
+                                                    placeholder="enter product new price" aria-label="Username" aria-describedby="basic-addon1">
+                                                <label for="description" class="form-label">Description</label>
+                                                <textarea placeholder="Provide the new Description for this product" id="description" name="description" class="form-control" aria-label="With textarea"></textarea>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button style="background-color: blue;" type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Close</button>
+                                                <button style="background-color: blue;" type="submit" class="btn btn-primary">Change now</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        <!-- end -->
+                    <%})%>
+                <%}else{%>
+                    <div>No products yet Add some</div>
+                <%}%>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form action="/add" method="post" enctype="multipart/form-data">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Provide Product details</h1>
+                    </div>
+                    <div class="modal-body">
+                        <label for="title" class="form-label">Title</label>
+                        <input name="title" id="title" type="text" class="form-control"
+                            placeholder="enter product title here" aria-label="Username" aria-describedby="basic-addon1"
+                            required>
+                        <label for="price" class="form-label">Price</label>
+                        <input id="price" name="price" type="text" class="form-control"
+                            placeholder="enter product price here" aria-label="Username" aria-describedby="basic-addon1"
+                            required>
+                        <label for="description" class="form-label">Description</label>
+                        <textarea id="description" name="description" class="form-control" required
+                            aria-label="With textarea"></textarea>
+                        <label for="image" class="form-label">Select Image</label>
+                        <input id="image" name="image" type="file" class="form-control" aria-label="Username"
+                            aria-describedby="basic-addon1" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button style="background-color: blue;" type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Close</button>
+                        <button style="background-color: blue;" type="submit" class="btn btn-primary">Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

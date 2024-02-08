@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <!-- Glide js -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.core.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.theme.css">
+    <!-- Custom StyleSheet -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Art Stone Design</title>
+    <link rel="shortcut icon" href="/favicon.svg" type="svg+xml">
+</head>
+
+<body>
+    <!-- Navigation -->
+        <div class="top-nav">
+            <div class="container d-flex">
+                <p>Call Us: +306993168526</p>
+            </div>
+        </div>
+        <div class="navigation">
+            <div class="nav-center container d-flex">
+                <h1 class="text-4xl">Dans</h1>
+        
+                <ul class="nav-list d-flex">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/faqs" class="nav-link">FAQs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/terms" class="nav-link">Terms</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/about" class="nav-link">About</a>
+                    </li>
+                </ul>
+        
+                <div class="hamburger">
+                    <i class="bx bx-menu-alt-left"></i>
+                </div>
+            </div>
+        </div>
+
+    <!-- Product Details -->
+    <section class="section product-detail">
+        <div class="details container">
+            <div class="left image-container">
+                <div class="main">
+                    <img src="<%=product.url%>" id="zoom" alt="" />
+                </div>
+            </div>
+            <div class="right">
+                <span>Paintings/Stones</span>
+                <h1><%=product.title%></h1>
+                <div class="price"><%=product.price%>&euro;</div>
+                <form class="form">
+                    <h2>want to buy! Contact us +306993168526</h2>
+                </form>
+                <h3>Product Detail</h3>
+                <p>
+                    <%=product.description%>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related -->
+    <section class="section featured">
+        <div class="top container">
+            <h1>Related Products</h1>
+            <a href="#" class="view-more">View more</a>
+        </div>
+        <div class="product-center container">
+
+            
+            
+            
+            
+            <%if(relatedProducts.length>0){%>
+            <% relatedProducts.map(function(relatedProduct) { %>
+            <div class="product-item">
+                <a href="/details?name=<%=relatedProduct.title%>" class="overlay">
+                    <div class="product-thumb">
+                        <img src="<%=relatedProduct.url%>" alt="<%=relatedProduct.name%>" />
+                    </div>
+                </a>
+                <div class="product-info">
+                    <div><%=relatedProduct.title%></div>
+                    <h4><%=relatedProduct.price%></h4>
+                </div>
+            </div>
+                <% }); %>
+                <%}else if(!relatedProducts.length>0){%>
+                    <div>No related Products are available</div>
+                <%}%>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="row">
+            <div class="col d-flex">
+                <h4>INFORMATION</h4>
+                <a href="/about">About us</a>
+                <a href="/terms">Term & Conditions</a>
+            </div>
+            <div class="col d-flex">
+                <span><i class="bx bxl-facebook-square"></i></span>
+                <span><i class="bx bxl-instagram-alt"></i></span>
+                <span><i class="bx bxl-github"></i></span>
+                <span><i class="bx bxl-twitter"></i></span>
+                <span><i class="bx bxl-pinterest"></i></span>
+            </div>
+        </div>
+    </footer>
+    <!-- Custom Script -->
+    <script src="index.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.0.min.js"
+        integrity="sha384-JUMjoW8OzDJw4oFpWIB2Bu/c6768ObEthBMVSiIx4ruBIEdyNSUQAjJNFqT5pnJ6"
+        crossorigin="anonymous"></script>
+    <script src="zoomsl.min.js"></script>
+    <script>
+        $(function () {
+            console.log("hello");
+            $("#zoom").imagezoomsl({
+                zoomrange: [4, 4],
+            });
+        });
+    </script>
+</body>
+
+</html>
